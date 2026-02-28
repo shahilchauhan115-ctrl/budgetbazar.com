@@ -1,78 +1,83 @@
-// eCommerce Functionality Script.js
+// script.js
 
-// Initialize Cart
-let cart = [];
+// eCommerce functionality for BudgetBazar
 
-// Add to Cart Function
-function addToCart(product) {
-    cart.push(product);
-    console.log(`${product.name} has been added to the cart.`);
-}
-
-// Remove from Cart Function
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    console.log(`Product with ID: ${productId} has been removed from the cart.`);
-}
-
-// View Cart Function
-function viewCart() {
-    console.log("Current Cart: ", cart);
-}
-
-// Product Filtering Function
-function filterProducts(products, criteria) {
-    return products.filter(product => {
-        let matches = true;
-        for (let key in criteria) {
-            if (criteria[key] && product[key] !== criteria[key]) {
-                matches = false;
-                break;
-            }
-        }
-        return matches;
-    });
-}
-
-// Search Products Function
-function searchProducts(products, searchString) {
-    return products.filter(product => product.name.toLowerCase().includes(searchString.toLowerCase()));
-}
-
-// Checkout Function
-function checkout(cart) {
-    if (cart.length === 0) {
-        console.log("Your cart is empty.");
-        return;
+class ShoppingCart {
+    constructor() {
+        this.items = [];
     }
-    console.log(`Proceeding to checkout with ${cart.length} item(s).`);
-    // Implement payment processing here...
+
+    addItem(product) {
+        this.items.push(product);
+    }
+
+    removeItem(productId) {
+        this.items = this.items.filter(item => item.id !== productId);
+    }
+
+    getTotal() {
+        return this.items.reduce((total, item) => total + item.price, 0);
+    }
+
+    clearCart() {
+        this.items = [];
+    }
 }
 
-// Wishlist Management
-let wishlist = [];
-function addToWishlist(product) {
-    wishlist.push(product);
-    console.log(`${product.name} has been added to your wishlist.`);
+class Product {
+    constructor(id, name, price, category) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.category = category;
+    }
 }
 
-function viewWishlist() {
-    console.log("Your Wishlist: ", wishlist);
+class ProductFilter {
+    static filterByCategory(products, category) {
+        return products.filter(product => product.category === category);
+    }
+
+    static searchByName(products, searchTerm) {
+        return products.filter(product => product.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    }
 }
 
-// Performance Optimizations (Debouncing function for search input)
-function debounce(func, delay) {
-    let timeoutId;
-    return function(...args) {
-        if (timeoutId) clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            func.apply(null, args);
-        }, delay);
-    };
+class Wishlist {
+    constructor() {
+        this.items = [];
+    }
+
+    addToWishlist(product) {
+        this.items.push(product);
+    }
+
+    removeFromWishlist(productId) {
+        this.items = this.items.filter(item => item.id !== productId);
+    }
 }
 
-// Example usage
-// let products = [{ id: 1, name: "Product 1" }, { id: 2, name: "Product 2" }];
-// addToCart(products[0]);
-// viewCart();
-// checkout(cart);
+class Checkout {
+    static processPayment(cart) {
+        const total = cart.getTotal();
+        console.log(`Processing payment of $${total.toFixed(2)}`);
+        // Implement payment gateway integration here
+    }
+}
+
+// Example Usage
+const cart = new ShoppingCart();
+const wishlist = new Wishlist();
+
+const products = [
+    new Product(1, 'Product A', 29.99, 'Category 1'),
+    new Product(2, 'Product B', 49.99, 'Category 2'),
+    new Product(3, 'Product C', 19.99, 'Category 1'),
+];
+
+const filteredProducts = ProductFilter.filterByCategory(products, 'Category 1');
+const searchedProducts = ProductFilter.searchByName(products, 'Product A');
+
+cart.addItem(products[0]);
+wishlist.addToWishlist(products[1]);
+Checkout.processPayment(cart);
