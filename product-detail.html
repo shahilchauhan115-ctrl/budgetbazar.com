@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gallery { display: flex; }
+        .thumbs { display: flex; flex-direction: column; margin-left: 10px; }
+        .image { width: 300px; height: 300px; object-fit: cover; transition: transform .2s; }
+        .image:hover { transform: scale(1.1); }
+        .trust-boosters { display: flex; justify-content: space-around; margin-top: 20px; }
+        .review { margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="product-detail">
+        <h1>Product Name</h1>
+        <div class="gallery">
+            <img src="product-image.jpg" alt="Product Image" class="image">
+            <div class="thumbs">
+                <img src="thumb1.jpg" alt="Thumbnail 1" class="image">
+                <img src="thumb2.jpg" alt="Thumbnail 2" class="image">
+                <img src="thumb3.jpg" alt="Thumbnail 3" class="image">
+            </div>
+        </div>
+        <p><strong>Price:</strong> $99.99</p>
+        <p><strong>EMI Info:</strong> Starting from $10/month</p>
+        <p><strong>Delivery Estimate:</strong> 3-5 business days</p>
+        <div class="trust-boosters">
+            <div>30 Days Return Policy</div>
+            <div>Free Shipping</div>
+            <div>Secure Payments</div>
+        </div>
+        <div class="reviews">
+            <h2>Reviews</h2>
+            <div class="review">Review 1: Great product!</div>
+            <div class="review">Review 2: Satisfied with the quality!</div>
+        </div>
+        <div class="frequently-bought-together">
+            <h2>Frequently Bought Together</h2>
+            <p>Additional Product 1</p>
+            <p>Additional Product 2</p>
+        </div>
+    </div>
+</body>
+</html>
