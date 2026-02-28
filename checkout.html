@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .hidden { display: none; }
+        .step { margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h1>Checkout Process</h1>
+    <div id="step1" class="step">
+        <h2>Step 1: Address Form</h2>
+        <form id="addressForm">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" name="address" required><br><br>
+            <input type="button" value="Next" onclick="showPaymentStep()">
+        </form>
+    </div>
+    <div id="step2" class="step hidden">
+        <h2>Step 2: Payment Method</h2>
+        <form id="paymentForm">
+            <input type="radio" id="creditCard" name="paymentMethod" value="creditCard" required>
+            <label for="creditCard">Credit Card</label><br>
+            <input type="radio" id="paypal" name="paymentMethod" value="paypal">
+            <label for="paypal">PayPal</label><br>
+            <input type="button" value="Submit" onclick="submitForms()">
+        </form>
+    </div>
+
+    <script>
+        function showPaymentStep() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+        }  
+
+        function submitForms() {
+            alert('Forms submitted.');
+            // Here you can handle form submission to the backend.
+        }
+    </script>
+</body>
+</html>
