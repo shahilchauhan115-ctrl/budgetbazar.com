@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Listing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="filters">
+            <h2>Filters</h2>
+            <div class="filter-category">
+                <h3>Category</h3>
+                <label><input type="checkbox" value="electronics"> Electronics</label>
+                <label><input type="checkbox" value="clothing"> Clothing</label>
+                <label><input type="checkbox" value="home"> Home</label>
+            </div>
+            <div class="filter-price">
+                <h3>Price Range</h3>
+                <input type="range" min="0" max="1000" step="10" value="500">
+            </div>
+            <button id="apply-filters">Apply Filters</button>
+        </aside>
+        <main class="product-grid">
+            <h1>Products</h1>
+            <div class="sorting">
+                <label for="sort">Sort by:</label>
+                <select id="sort">
+                    <option value="low-to-high">Price: Low to High</option>
+                    <option value="high-to-low">Price: High to Low</option>
+                </select>
+            </div>
+            <div id="products">
+                <!-- Product items will be dynamically loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
